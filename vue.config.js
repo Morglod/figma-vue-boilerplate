@@ -19,16 +19,11 @@ module.exports = {
                 inlineSource: '.(js)$',
                 chunks: ['app']
             }),
-            // new CreateFileWebpack({
-            //     path: path.resolve(__dirname, figmaPlugin.name),
-            //     fileName: 'manifest.json',
-            //     content: JSON.stringify(figmaPlugin)
-            // }),
             new HtmlWebpackInlineSourcePlugin()
         ],
         entry: {
             // app: [ './src/main.ts' ],
-            worker: [ './src/worker/index.ts' ]
+            plugin: [ './plugin-src/index.ts' ]
         }
     }
 };

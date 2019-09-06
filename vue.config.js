@@ -1,10 +1,12 @@
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    css: { extract: false },
+    css: {
+        extract: false,
+    },
     filenameHashing: false,
-    // delete HTML related webpack plugins
     chainWebpack: config => {
         config.plugins.delete('html')
         config.plugins.delete('preload')
@@ -19,11 +21,18 @@ module.exports = {
                 inlineSource: '.(js)$',
                 chunks: ['app']
             }),
-            new HtmlWebpackInlineSourcePlugin()
+            new HtmlWebpackInlineSourcePlugin(),
+            new CopyPlugin([
+                { from: 'plugin-public/manifest.json', to: 'manifest.json' },
+            ]),
         ],
         entry: {
-            // app: [ './src/main.ts' ],
-            plugin: [ './plugin-src/index.ts' ]
+            code: [ 'babel-polyfill', './plugin-src/index.ts' ],
+            app: [ 'babel-polyfill' ],
+        },
+        output: {
+          filename: '[name].js',
+          chunkFilename: '[name].js',
         }
     }
 };

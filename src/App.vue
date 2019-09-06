@@ -1,86 +1,49 @@
 <template>
     <div id="app">
-        <Button primary />
-        <Checkbox v-model="checkbox1">
-            {{ checkbox1 ? 'checked' : 'unchecked' }}
-        </Checkbox>
-        <FigmaSwitch v-model="checkbox2">
-            {{ checkbox2 ? 'checked' : 'unchecked' }}
-        </FigmaSwitch>
-        <Disclosure>
-            <DisclosureItem label="A">
-                Hello
-            </DisclosureItem>
-            <DisclosureItem label="B" section>
-                World
-            </DisclosureItem>
-        </Disclosure>
-        <Input label="Hi" placeholder="input" icon="angle" />
-        <Icon icon="adjust" />
-        <Icon icon="adjust" blue />
-        <Icon icon="adjust" black3 />
-        <Icon icon="adjust" white />
-        <Icon icon="adjust" button />
-        <Icon icon="adjust" button selected />
-        <Icon text="Hello" />
-        <Label>Hello</Label>
-        <Tip icon="visible">
-            Your onboarding tip goes here. This is like the tip shows you how to create local styles.
-        </Tip>
-        <Select
-            :items="[
-                { group: 'test' },
-                { key: 'a', text: 'hello' },
-                { key: 'b', text: 'hello2' }
-            ]"
-            placeholder="Select me"
-        />
-        <Textarea rows="2" />
-        <Bell>Smth happens</Bell>
-        <Bell loading>Tasks</Bell>
-        <Bell error loading>Tasks bad</Bell>
+        <SectionTitle>Figma plugin boilerplate</SectionTitle>
+        <Input label="Width" v-model.number="width" icon="arrow-left-right" />
+        <Input label="Height" v-model.number="height" icon="arrow-up-down" />
+        <Button primary @click="create()">Create</Button>
+        <Divider />
+        <a href="https://github.com/Morglod/figma-vue-boilerplate">
+            <Button secondary class="button--margin-right">
+                Boilerplate on github
+            </Button>
+        </a>
+        <a href="https://thomas-lowry.github.io/figma-plugin-ds/">
+            <Button secondary>
+                UI kit
+            </Button>
+        </a>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Button from "@/figma-ds/Button.vue";
-import Checkbox from "@/figma-ds/Checkbox.vue";
-import FigmaSwitch from "@/figma-ds/FigmaSwitch.vue";
-import Disclosure from "@/figma-ds/Disclosure.vue";
-import DisclosureItem from "@/figma-ds/DisclosureItem.vue";
-import Input from "@/figma-ds/Input.vue";
-import Icon from "@/figma-ds/Icon.vue";
-import Label from "@/figma-ds/Label.vue";
-import SectionTitle from "@/figma-ds/SectionTitle.vue";
-import Divider from "@/figma-ds/Divider.vue";
-import Tip from "@/figma-ds/Tip.vue";
-import Select from "@/figma-ds/Select.vue";
-import Textarea from "@/figma-ds/Textarea.vue";
-import Bell from "@/figma-ds/Bell.vue";
+import FigmaDs from '@/figma-ds';
+import { connectToPlugin, Api } from 'rpct';
+import { UIMethods, PluginMethods } from '../plugin-src/iapi';
 
 export default Vue.extend({
     name: "app",
     components: {
-        Button,
-        Checkbox,
-        FigmaSwitch,
-        Disclosure,
-        DisclosureItem,
-        Input,
-        Icon,
-        Label,
-        SectionTitle,
-        Divider,
-        Tip,
-        Select,
-        Textarea,
-        Bell,
+        ...FigmaDs,
     },
     data: () => ({
-        checkbox1: false,
-        checkbox2: false,
-    })
+        width: 0,
+        height: 0,
+        api: undefined! as Api<PluginMethods, UIMethods>,
+    }),
+    methods: {
+        create() {
+            this.api.callMethod('createRectangle', this.width, this.height);
+        }
+    },
+    mounted() {
+        this.api = connectToPlugin<PluginMethods, UIMethods>({
+            // methods
+        });
+    }
 });
 </script>
 

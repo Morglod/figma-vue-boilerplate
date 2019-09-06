@@ -44,20 +44,20 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Button from "@/fig/Button.vue";
-import Checkbox from "@/fig/Checkbox.vue";
-import FigmaSwitch from "@/fig/FigmaSwitch.vue";
-import Disclosure from "@/fig/Disclosure.vue";
-import DisclosureItem from "@/fig/DisclosureItem.vue";
-import Input from "@/fig/Input.vue";
-import Icon from "@/fig/Icon.vue";
-import Label from "@/fig/Label.vue";
-import SectionTitle from "@/fig/SectionTitle.vue";
-import Divider from "@/fig/Divider.vue";
-import Tip from "@/fig/Tip.vue";
-import Select from "@/fig/Select.vue";
-import Textarea from "@/fig/Textarea.vue";
-import Bell from "@/fig/Bell.vue";
+import Button from "@/figma-ds/Button.vue";
+import Checkbox from "@/figma-ds/Checkbox.vue";
+import FigmaSwitch from "@/figma-ds/FigmaSwitch.vue";
+import Disclosure from "@/figma-ds/Disclosure.vue";
+import DisclosureItem from "@/figma-ds/DisclosureItem.vue";
+import Input from "@/figma-ds/Input.vue";
+import Icon from "@/figma-ds/Icon.vue";
+import Label from "@/figma-ds/Label.vue";
+import SectionTitle from "@/figma-ds/SectionTitle.vue";
+import Divider from "@/figma-ds/Divider.vue";
+import Tip from "@/figma-ds/Tip.vue";
+import Select from "@/figma-ds/Select.vue";
+import Textarea from "@/figma-ds/Textarea.vue";
+import Bell from "@/figma-ds/Bell.vue";
 
 export default Vue.extend({
     name: "app",
@@ -85,7 +85,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import "@/fig/lib.scss";
+@import "@/figma-ds/lib.scss";
 
 #app {
     -webkit-font-smoothing: antialiased;

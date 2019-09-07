@@ -1,5 +1,6 @@
 <template>
     <div
+        @click="$emit('click', $event)"
         class="icon"
         :class="{
             ['icon--'+icon]: !!icon,

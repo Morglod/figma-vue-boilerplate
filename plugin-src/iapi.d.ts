@@ -3,5 +3,6 @@ export type UIMethods = {
 };
 
 export type PluginMethods = {
-    createRectangle(width: number, height: number): void;
+    /** return created node id */
+    createRectangle(width: number, height: number): string;
 };

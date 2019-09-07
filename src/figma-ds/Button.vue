@@ -8,6 +8,7 @@
             'button--secondary-destructive': secondary && destructive,
         }"
         :disabled="disabled"
+        @click="$emit('click', $event)"
     >
         <slot>
             Button

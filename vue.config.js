@@ -12,14 +12,15 @@ module.exports = {
         config.plugins.delete('preload')
         config.plugins.delete('prefetch')
         config.optimization.delete('splitChunks')
+        config.entry('app').delete()
     },
     configureWebpack: {
         plugins: [
             new HtmlWebpackPlugin({
-                template: './src/ui.html',
+                template: './ui-src/ui.html',
                 filename: 'ui.html',
                 inlineSource: '.(js)$',
-                chunks: ['app']
+                chunks: [ 'ui' ]
             }),
             new HtmlWebpackInlineSourcePlugin(),
             new CopyPlugin([
@@ -27,8 +28,8 @@ module.exports = {
             ]),
         ],
         entry: {
-            code: [ 'babel-polyfill', './plugin-src/index.ts' ],
-            app: [ 'babel-polyfill' ],
+            ui: [ './ui-src/main.ts' ],
+            code: [ './plugin-src/index.ts' ],
         },
         output: {
           filename: '[name].js',

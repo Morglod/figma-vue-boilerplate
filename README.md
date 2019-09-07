@@ -25,7 +25,9 @@ uiApi = connectToUI<PluginMethods, UIMethods>(figma, {
 Connect to Plugin from UI and invoke `createRectangle`:
 ```ts
 pluginApi = connectToPlugin<PluginMethods, UIMethods>({});
-createdNodeId = await this.api.callMethod('createRectangle', 100, 50);
+
+// invoke createRectangle(100, 50)
+createdNodeId = await pluginApi.callMethod('createRectangle', 100, 50);
 ```
 
 RPC is fully typed.

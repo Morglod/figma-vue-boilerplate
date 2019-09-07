@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <SectionTitle>Figma plugin boilerplate</SectionTitle>
+        <SectionTitle>Create rectangle</SectionTitle>
         <Input label="Width" v-model="width" icon="arrow-left-right" />
         <Input label="Height" v-model="height" icon="arrow-up-down" />
         <Button primary @click="create()">Create</Button>

@@ -1,6 +1,7 @@
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Path = require('path');
 
 module.exports = {
     css: {
@@ -12,7 +13,7 @@ module.exports = {
         config.plugins.delete('preload')
         config.plugins.delete('prefetch')
         config.optimization.delete('splitChunks')
-        config.entry('app').delete()
+        config.entryPoints.delete('app')
     },
     configureWebpack: {
         plugins: [
@@ -30,6 +31,11 @@ module.exports = {
         entry: {
             ui: [ './ui-src/main.ts' ],
             code: [ './plugin-src/index.ts' ],
+        },
+        resolve: {
+          alias: {
+            '@': Path.resolve('./ui-src'),
+          }
         },
         output: {
           filename: '[name].js',

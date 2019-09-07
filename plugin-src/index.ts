@@ -3,7 +3,7 @@ import { UIMethods, PluginMethods } from '../plugin-src/iapi';
 
 (async function() {
     figma.showUI(__html__, {
-        width: 200,
+        width: 350,
         height: 300
     });
 

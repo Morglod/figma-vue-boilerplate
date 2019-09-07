@@ -1,5 +1,5 @@
 {
-    "name": "figma-boilerplate-test",
+    "name": "Figma plugin boilerplate",
     "id": "751819288534552922",
     "api": "1.0.0",
     "main": "code.js",

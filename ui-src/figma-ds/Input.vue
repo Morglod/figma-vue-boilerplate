@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!!this.label">
+    <div>
         <label class="label" :for="uniqueId">
             {{ label }}
         </label>
@@ -33,18 +33,6 @@
             @focusout="hasFocus = false"
         />
     </div>
-    <input
-        v-else
-        type="input"
-        class="input"
-        :value="value"
-        :disabled="disabled"
-        :placeholder="placeholder"
-        @change="evt => this.$emit('input', evt.target.value)"
-        :id="uniqueId"
-        @focusin="hasFocus = true"
-        @focusout="hasFocus = false"
-    />
 </template>
 
 <script lang="ts">

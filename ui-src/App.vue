@@ -50,8 +50,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import "@/figma-ds/lib.scss";
-
 #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

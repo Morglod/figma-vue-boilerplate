@@ -35,6 +35,6 @@ export default Vue.extend({
 
 <style lang="scss">
 .icon--button {
-    cursor: pointer !important;
+    cursor: pointer;
 }
 </style>

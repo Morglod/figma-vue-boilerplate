@@ -30,7 +30,7 @@
                 >
                     <span class="select-menu__list-item-icon" />
                     <span class="select-menu__list-item-text">
-                        {{ item.text }}
+                        {{ item && item.text }}
                     </span>
                 </li>
             </template>
@@ -80,8 +80,8 @@ export default Vue.extend({
         },
         buttonLabel(): string {
             if (this.selectedKey) {
-                const item = this.items.find((x: any) => x.key === this.selectedKey)! as any;
-                return item.text;
+                const item = this.items.find(x => 'key' in x && x.key === this.selectedKey);
+                if (item && 'key' in item) return item.text;
             }
             return this.placeholder;
         }

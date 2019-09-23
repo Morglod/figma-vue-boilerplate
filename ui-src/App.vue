@@ -5,6 +5,7 @@
         <Input label="Height" v-model="height" icon="arrow-up-down" />
         <Button primary @click="create()">Create</Button>
         <Label v-if="!!createdNodeId">Created new node with id = "{{ createdNodeId }}"</Label>
+        <Label>Selected ids: {{ selectedNodeIds.join(', ') }}</Label>
         <Divider />
         <a href="https://github.com/Morglod/figma-vue-boilerplate">
             <Button secondary class="button--margin-right">
@@ -22,8 +23,7 @@
 <script lang="ts">
 import Vue from "vue";
 import FigmaDs from '@/figma-ds';
-import { connectToPlugin, Api, DefaultConfig } from 'rpct/lib/figma';
-import { UIMethods, PluginMethods } from '../plugin-src/iapi';
+import { api } from './api';
 
 export default Vue.extend({
     name: "app",
@@ -33,17 +33,17 @@ export default Vue.extend({
     data: () => ({
         width: '100',
         height: '20',
-        api: undefined! as Api<PluginMethods, UIMethods>,
         createdNodeId: '',
+        selectedNodeIds: [] as string[],
     }),
     methods: {
         async create() {
-            this.createdNodeId = await this.api.callMethod('createRectangle', +this.width, +this.height);
+            this.createdNodeId = await api.createRectangle(+this.width, +this.height);
         }
     },
     mounted() {
-        this.api = connectToPlugin<PluginMethods, UIMethods>({
-            // methods
+        api.listenSelectionChange((selectedIds: string[]) => {
+            this.selectedNodeIds = selectedIds;
         });
     }
 });

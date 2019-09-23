@@ -5,6 +5,7 @@ Features:
 * TypeScript
 * [figma-plugin-ds](https://thomas-lowry.github.io/figma-plugin-ds/) vue components
 * [RPC](https://github.com/Morglod/rpct-js)
+* Selection change listener
 
 Vue components implemented on [figma-plugin-ds](https://thomas-lowry.github.io/figma-plugin-ds/) styles.
 
@@ -12,22 +13,29 @@ Vue components implemented on [figma-plugin-ds](https://thomas-lowry.github.io/f
 
 Connect to UI from Plugin side:
 ```ts
-uiApi = connectToUI<PluginMethods, UIMethods>(figma, {
+uiApi = await connectToUI<PluginMethods, UIMethods>(figma, {
     createRectangle(width, height) {
         const rect = figma.createRectangle();
         rect.resize(width, height);
         figma.currentPage.appendChild(rect);
         return rect.id;
-    }
+    },
+
+    // ...
 });
 ```
 
 Connect to Plugin from UI and invoke `createRectangle`:
 ```ts
-pluginApi = connectToPlugin<PluginMethods, UIMethods>({});
+api = proxyMapRemote(
+    await connectToPlugin<PluginMethods, UIMethods>({})
+);
 
-// invoke createRectangle(100, 50)
-createdNodeId = await pluginApi.callMethod('createRectangle', 100, 50);
+createdNodeId = await api.createRectangle(100, 50);
+
+api.listenSelectionChange((selectedIds: string[]) => {
+    console.warn('selection change', selectedIds);
+});
 ```
 
 RPC is fully typed.

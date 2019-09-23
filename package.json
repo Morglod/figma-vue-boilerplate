@@ -1,13 +1,13 @@
 {
   "name": "figma-vue-boilerplate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "rpct": "0.2.1",
+    "rpct": "0.3.4",
     "vue": "^2.6.10"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { connectToPlugin, proxyMapRemote, ProxyMapRemoteApi } from 'rpct';
+import { connectToPlugin, proxyMapRemote, ProxyMapRemoteApi } from 'rpct/browser';
 import { UIMethods, PluginMethods } from '../plugin-src/iapi';
 
 export let api: ProxyMapRemoteApi<PluginMethods>;

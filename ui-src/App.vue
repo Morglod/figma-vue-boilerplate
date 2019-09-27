@@ -24,6 +24,7 @@
 import Vue from "vue";
 import FigmaDs from '@/figma-ds';
 import { api } from './api';
+import { bindCallback } from 'rpct/browser';
 
 export default Vue.extend({
     name: "app",
@@ -42,9 +43,10 @@ export default Vue.extend({
         }
     },
     mounted() {
-        api.listenSelectionChange((selectedIds: string[]) => {
+        // bind callback, otherwise it will be disposed after remote call ended
+        api.listenSelectionChange(bindCallback((selectedIds: string[]) => {
             this.selectedNodeIds = selectedIds;
-        });
+        }));
     }
 });
 </script>

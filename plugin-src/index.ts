@@ -1,4 +1,4 @@
-import { connectToUI, DefaultConfig, watchProperty } from 'rpct';
+import { connectToUI, DefaultConfig, watchProperty } from 'rpct/browser';
 import { UIMethods, PluginMethods } from '../plugin-src/iapi';
 import { isEqualNodeArray } from './utils';
 
@@ -26,12 +26,8 @@ import { isEqualNodeArray } from './utils';
             return rect.id;
         },
         listenSelectionChange(onSelectionChange) {
-            // should return unresolving promise, so rpct will not free onSelectionChange remote callback
-
-            return new Promise(disposeCallback => {
-                selectionWatcher.on('change', selection => {
-                    onSelectionChange(selection.map(x => x.id))
-                });
+            selectionWatcher.on('change', selection => {
+                onSelectionChange(selection.map(x => x.id))
             });
         }
     });

@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "rpct": "0.3.4",
+    "rpct": "0.3.5",
     "vue": "^2.6.10"
   },
   "devDependencies": {
